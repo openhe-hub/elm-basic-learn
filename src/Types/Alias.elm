@@ -2,7 +2,6 @@ module Types.Alias exposing (..)
 
 import Bitwise exposing (and)
 import Browser
-import Debug
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onClick, onInput)
@@ -74,20 +73,6 @@ update msg model =
 verify : User -> Bool
 verify user =
     user.username == "openhe" && user.password == "123"
-
-
-updateUser : User -> Model -> Model
-updateUser newUser model =
-    { model | user =  newUser }
-
-
-updateUsername : String -> User -> User
-updateUsername newUsername user =
-    { user | username = newUsername }
-
-updatePassword : String -> User -> User
-updatePassword newPassword user =
-    { user | username = newPassword }
 
 
 

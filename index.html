@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Types.Alias</title>
+  <title>Types.Pattern</title>
   <style>body { padding: 0; margin: 0; }</style>
 </head>
 
@@ -4384,9 +4384,11 @@ function _Browser_load(url)
 		}
 	}));
 }
-var $author$project$Types$Alias$init = {
-	text: '',
-	user: {password: '', username: ''}
+var $author$project$Types$Pattern$Visitor = function (a) {
+	return {$: 'Visitor', a: a};
+};
+var $author$project$Types$Pattern$init = {
+	user: $author$project$Types$Pattern$Visitor('aaa')
 };
 var $elm$core$Basics$EQ = {$: 'EQ'};
 var $elm$core$Basics$GT = {$: 'GT'};
@@ -5198,44 +5200,33 @@ var $elm$browser$Browser$sandbox = function (impl) {
 			view: impl.view
 		});
 };
-var $author$project$Types$Alias$verify = function (user) {
-	return (user.username === 'openhe') && (user.password === '123');
+var $elm$core$Debug$log = _Debug_log;
+var $author$project$Types$Pattern$toName = function (user) {
+	if (user.$ === 'Regular') {
+		var name = user.a;
+		var age = user.b;
+		return _Utils_ap(
+			name,
+			$elm$core$String$fromInt(age));
+	} else {
+		var name = user.a;
+		return name;
+	}
 };
-var $author$project$Types$Alias$update = F2(
+var $author$project$Types$Pattern$execute = function (model) {
+	var tmp = A2(
+		$elm$core$Debug$log,
+		$author$project$Types$Pattern$toName(model.user),
+		_Utils_Tuple0);
+	var newModel = model;
+	return newModel;
+};
+var $author$project$Types$Pattern$update = F2(
 	function (msg, model) {
-		switch (msg.$) {
-			case 'Verify':
-				return _Utils_update(
-					model,
-					{
-						text: $author$project$Types$Alias$verify(model.user) ? 'ok' : 'error'
-					});
-			case 'UpdateUsername':
-				var newUsername = msg.a;
-				return _Utils_update(
-					model,
-					{
-						user: {password: model.user.password, username: newUsername}
-					});
-			default:
-				var newPassword = msg.a;
-				return _Utils_update(
-					model,
-					{
-						user: {password: newPassword, username: model.user.username}
-					});
-		}
+		return $author$project$Types$Pattern$execute(model);
 	});
-var $author$project$Types$Alias$UpdatePassword = function (a) {
-	return {$: 'UpdatePassword', a: a};
-};
-var $author$project$Types$Alias$UpdateUsername = function (a) {
-	return {$: 'UpdateUsername', a: a};
-};
-var $author$project$Types$Alias$Verify = {$: 'Verify'};
+var $author$project$Types$Pattern$Demo = {$: 'Demo'};
 var $elm$html$Html$button = _VirtualDom_node('button');
-var $elm$html$Html$div = _VirtualDom_node('div');
-var $elm$html$Html$input = _VirtualDom_node('input');
 var $elm$virtual_dom$VirtualDom$Normal = function (a) {
 	return {$: 'Normal', a: a};
 };
@@ -5253,103 +5244,26 @@ var $elm$html$Html$Events$onClick = function (msg) {
 		'click',
 		$elm$json$Json$Decode$succeed(msg));
 };
-var $elm$html$Html$Events$alwaysStop = function (x) {
-	return _Utils_Tuple2(x, true);
-};
-var $elm$virtual_dom$VirtualDom$MayStopPropagation = function (a) {
-	return {$: 'MayStopPropagation', a: a};
-};
-var $elm$html$Html$Events$stopPropagationOn = F2(
-	function (event, decoder) {
-		return A2(
-			$elm$virtual_dom$VirtualDom$on,
-			event,
-			$elm$virtual_dom$VirtualDom$MayStopPropagation(decoder));
-	});
-var $elm$json$Json$Decode$field = _Json_decodeField;
-var $elm$json$Json$Decode$at = F2(
-	function (fields, decoder) {
-		return A3($elm$core$List$foldr, $elm$json$Json$Decode$field, decoder, fields);
-	});
-var $elm$json$Json$Decode$string = _Json_decodeString;
-var $elm$html$Html$Events$targetValue = A2(
-	$elm$json$Json$Decode$at,
-	_List_fromArray(
-		['target', 'value']),
-	$elm$json$Json$Decode$string);
-var $elm$html$Html$Events$onInput = function (tagger) {
-	return A2(
-		$elm$html$Html$Events$stopPropagationOn,
-		'input',
-		A2(
-			$elm$json$Json$Decode$map,
-			$elm$html$Html$Events$alwaysStop,
-			A2($elm$json$Json$Decode$map, tagger, $elm$html$Html$Events$targetValue)));
-};
-var $elm$json$Json$Encode$string = _Json_wrap;
-var $elm$html$Html$Attributes$stringProperty = F2(
-	function (key, string) {
-		return A2(
-			_VirtualDom_property,
-			key,
-			$elm$json$Json$Encode$string(string));
-	});
-var $elm$html$Html$Attributes$placeholder = $elm$html$Html$Attributes$stringProperty('placeholder');
 var $elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
 var $elm$html$Html$text = $elm$virtual_dom$VirtualDom$text;
-var $elm$html$Html$Attributes$type_ = $elm$html$Html$Attributes$stringProperty('type');
-var $elm$html$Html$Attributes$value = $elm$html$Html$Attributes$stringProperty('value');
-var $author$project$Types$Alias$view = function (model) {
+var $author$project$Types$Pattern$view = function (model) {
 	return A2(
-		$elm$html$Html$div,
-		_List_Nil,
+		$elm$html$Html$button,
 		_List_fromArray(
 			[
-				A2(
-				$elm$html$Html$input,
-				_List_fromArray(
-					[
-						$elm$html$Html$Attributes$type_('text'),
-						$elm$html$Html$Attributes$placeholder('username'),
-						$elm$html$Html$Attributes$value(model.user.username),
-						$elm$html$Html$Events$onInput($author$project$Types$Alias$UpdateUsername)
-					]),
-				_List_Nil),
-				A2(
-				$elm$html$Html$input,
-				_List_fromArray(
-					[
-						$elm$html$Html$Attributes$type_('password'),
-						$elm$html$Html$Attributes$placeholder('password'),
-						$elm$html$Html$Attributes$value(model.user.password),
-						$elm$html$Html$Events$onInput($author$project$Types$Alias$UpdatePassword)
-					]),
-				_List_Nil),
-				A2(
-				$elm$html$Html$button,
-				_List_fromArray(
-					[
-						$elm$html$Html$Events$onClick($author$project$Types$Alias$Verify)
-					]),
-				_List_fromArray(
-					[
-						$elm$html$Html$text('login')
-					])),
-				A2(
-				$elm$html$Html$div,
-				_List_Nil,
-				_List_fromArray(
-					[
-						$elm$html$Html$text(model.text)
-					]))
+				$elm$html$Html$Events$onClick($author$project$Types$Pattern$Demo)
+			]),
+		_List_fromArray(
+			[
+				$elm$html$Html$text('run')
 			]));
 };
-var $author$project$Types$Alias$main = $elm$browser$Browser$sandbox(
-	{init: $author$project$Types$Alias$init, update: $author$project$Types$Alias$update, view: $author$project$Types$Alias$view});
-_Platform_export({'Types':{'Alias':{'init':$author$project$Types$Alias$main(
+var $author$project$Types$Pattern$main = $elm$browser$Browser$sandbox(
+	{init: $author$project$Types$Pattern$init, update: $author$project$Types$Pattern$update, view: $author$project$Types$Pattern$view});
+_Platform_export({'Types':{'Pattern':{'init':$author$project$Types$Pattern$main(
 	$elm$json$Json$Decode$succeed(_Utils_Tuple0))(0)}}});}(this));
 
-  var app = Elm.Types.Alias.init({ node: document.getElementById("elm") });
+  var app = Elm.Types.Pattern.init({ node: document.getElementById("elm") });
 }
 catch (e)
 {
