@@ -1,9 +1,10 @@
-module Tools.Debug.DebugDemo exposing (..)
+module ErrorHandle.Maybe exposing (..)
 
 import Browser
 import Debug
 import Html exposing (..)
 import Html.Events exposing (..)
+import List
 
 
 
@@ -19,12 +20,13 @@ main =
 
 
 type alias Model =
-    {}
+    { users : List User
+    }
 
 
 init : Model
 init =
-    {}
+    { users = [ { name = "aaa", age = Just 21 }, { name = "bbb", age = Nothing } ] }
 
 
 
@@ -35,6 +37,28 @@ type Msg
     = Demo
 
 
+
+-- type Maybe a
+--     = Just a
+--     | Nothing
+
+
+type alias User =
+    { name : String
+    , age : Maybe Int
+    }
+
+
+canBuyAlcohol : User -> Bool
+canBuyAlcohol user =
+    case user.age of
+        Nothing ->
+            False
+
+        Just age ->
+            age >= 18
+
+
 update : Msg -> Model -> Model
 update msg model =
     case msg of
@@ -42,9 +66,8 @@ update msg model =
             let
                 newModel =
                     model
-
                 tmp =
-                    Debug.log "Hello world" ()
+                    Debug.log "" (List.map canBuyAlcohol model.users)
             in
             newModel
 

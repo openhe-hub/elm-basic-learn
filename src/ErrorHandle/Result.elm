@@ -1,4 +1,4 @@
-module Tools.Debug.DebugDemo exposing (..)
+module ErrorHandle.Result exposing (..)
 
 import Browser
 import Debug
@@ -19,13 +19,24 @@ main =
 
 
 type alias Model =
-    {}
+    {
+        ages:List String
+    }
 
 
 init : Model
 init =
-    {}
+    {ages=["-1","17","19"]}
 
+
+isAlcoholOk: String -> Result String Int
+isAlcoholOk input =
+    case String.toInt input of
+        Nothing -> Err "not a number."
+        Just age ->
+            if age<0 then Err "age cannot be negative."
+            else if age<=18 then Err "you are too young."
+            else Ok age
 
 
 -- update
@@ -33,6 +44,10 @@ init =
 
 type Msg
     = Demo
+
+-- type Result error value
+--   = Ok value
+--   | Err error
 
 
 update : Msg -> Model -> Model
@@ -44,9 +59,11 @@ update msg model =
                     model
 
                 tmp =
-                    Debug.log "Hello world" ()
+                    Debug.log "Hello world" (List.map isAlcoholOk model.ages)
             in
             newModel
+
+
 
 -- view
 
