@@ -1,4 +1,4 @@
-module Web.Form exposing (..)
+module Web.Html.Form exposing (..)
 
 import Browser
 import Html exposing (..)

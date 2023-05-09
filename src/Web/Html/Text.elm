@@ -1,4 +1,4 @@
-module Web.Text exposing (..)
+module Web.Html.Text exposing (..)
 
 import Browser
 import Html exposing (Attribute, Html, div, input, text)

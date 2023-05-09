@@ -1,4 +1,4 @@
-module Web.Button exposing (..)
+module Web.Html.Button exposing (..)
 
 import Browser
 import Html exposing (Html, button, div, text)
