@@ -7,7 +7,6 @@ import Html.Attributes exposing (..)
 import Html.Events exposing (onClick, onInput)
 
 
-
 -- main
 
 
@@ -63,11 +62,11 @@ update msg model =
 
         UpdateUsername newUsername ->
             -- updateUser (updateUsername newUsername model.user) model
-            {model | user={username=newUsername, password=model.user.password}}
+            { model | user = { username = newUsername, password = model.user.password } }
 
         UpdatePassword newPassword ->
             -- updateUser (updatePassword newPassword model.user) model
-            {model | user={username=model.user.username, password=newPassword}}
+            { model | user = { username = model.user.username, password = newPassword } }
 
 
 verify : User -> Bool
@@ -84,6 +83,14 @@ view model =
     div []
         [ input [ type_ "text", placeholder "username", value model.user.username, onInput UpdateUsername ] []
         , input [ type_ "password", placeholder "password", value model.user.password, onInput UpdatePassword ] []
-        , button [ onClick Verify ] [ text "login" ]
+        , button
+            [ onClick Verify
+            , style "background-color" "cyan"
+            , style "border-radius" "5px"
+            , style "border" "0px"
+            , style "height" "30px"
+            , style "width" "70px"
+            ]
+            [ text "login" ]
         , div [] [ text model.text ]
         ]
