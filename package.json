@@ -1,11 +1,9 @@
 {
   "devDependencies": {
-    "husky": "^8.0.3",
-    "lint-staged": "^13.2.2"
+    "standard-version": "^9.5.0"
   },
-  "lint-staged": {
-    "*.elm": [
-      "elm-format --validate src/"
-    ]
+  "scripts": {
+    "release": "standard-version",
+    "publish": "git push --follow-tags origin master"
   }
 }
