@@ -71,6 +71,7 @@ get key model =
     case Dict.get key model.users of
         Just user ->
             model |> Debug.log "Found"
+
         Nothing ->
             model |> Debug.log "Key not exist"
 

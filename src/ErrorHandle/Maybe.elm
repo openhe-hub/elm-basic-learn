@@ -66,10 +66,13 @@ update msg model =
             let
                 newModel =
                     model
+
                 tmp =
                     Debug.log "" (List.map canBuyAlcohol model.users)
             in
             newModel
+
+
 
 -- view
 

@@ -1,13 +1,16 @@
-module Web.Css.UI exposing(..)
+module Web.Css.UI exposing (..)
 
 -- 导入相关模块
+
 import Browser
-import Element exposing (Element, el, text, centerY, centerX, fill, column, spacing, row, alignRight)
-import Element.Font as Font
+import Element exposing (Element, alignRight, centerX, centerY, column, el, fill, row, spacing, text)
 import Element.Background as Background
 import Element.Border as Border
 import Element.Events as Events
+import Element.Font as Font
 import Element.Input as Input
+
+
 
 -- main =
 --     Browser.sandbox
@@ -15,21 +18,31 @@ import Element.Input as Input
 --         , view = view
 --         , update = update
 --         }
-
 -- 定义消息类型
+
+
 type Msg
     = Increment
     | Decrement
 
+
+
 -- 定义 model
+
+
 type alias Model =
     { counter : Int }
+
 
 init : Model
 init =
     { counter = 0 }
 
+
+
 -- 定义 update 函数
+
+
 update : Msg -> Model -> Model
 update msg model =
     case msg of
@@ -39,7 +52,11 @@ update msg model =
         Decrement ->
             { model | counter = model.counter - 1 }
 
+
+
 -- 定义 view 函数
+
+
 view : Model -> Element Msg
 view model =
     column [ centerX, centerY, spacing 30 ]
@@ -52,5 +69,6 @@ view model =
             ]
         ]
 
--- 定义 main 函数
 
+
+-- 定义 main 函数

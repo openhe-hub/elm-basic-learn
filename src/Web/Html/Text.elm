@@ -14,7 +14,10 @@ import Web.Button exposing (Model, update)
 main =
     Browser.sandbox { init = init, update = update, view = view }
 
+
+
 -- model
+
 
 type alias Model =
     { content : String }
@@ -25,21 +28,28 @@ init =
     { content = ""
     }
 
+
+
 -- update
-type Msg=Change String
+
+
+type Msg
+    = Change String
+
+
 update msg model =
     case msg of
         Change newContent ->
-            {model | content=newContent}
+            { model | content = newContent }
+
 
 
 -- view
-view: Model -> Html Msg
-view model=
-    div[]
-        [
-            input[placeholder "Text to reserve", value model.content, onInput Change][]
-            , div [] [text (String.reverse model.content)]
-        ]
-     
 
+
+view : Model -> Html Msg
+view model =
+    div []
+        [ input [ placeholder "Text to reserve", value model.content, onInput Change ] []
+        , div [] [ text (String.reverse model.content) ]
+        ]

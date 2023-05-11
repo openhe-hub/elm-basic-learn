@@ -19,24 +19,31 @@ main =
 
 
 type alias Model =
-    {
-        ages:List String
+    { ages : List String
     }
 
 
 init : Model
 init =
-    {ages=["-1","17","19"]}
+    { ages = [ "-1", "17", "19" ] }
 
 
-isAlcoholOk: String -> Result String Int
+isAlcoholOk : String -> Result String Int
 isAlcoholOk input =
     case String.toInt input of
-        Nothing -> Err "not a number."
+        Nothing ->
+            Err "not a number."
+
         Just age ->
-            if age<0 then Err "age cannot be negative."
-            else if age<=18 then Err "you are too young."
-            else Ok age
+            if age < 0 then
+                Err "age cannot be negative."
+
+            else if age <= 18 then
+                Err "you are too young."
+
+            else
+                Ok age
+
 
 
 -- update
@@ -44,6 +51,8 @@ isAlcoholOk input =
 
 type Msg
     = Demo
+
+
 
 -- type Result error value
 --   = Ok value

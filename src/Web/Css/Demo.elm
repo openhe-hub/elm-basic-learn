@@ -1,14 +1,15 @@
 module Web.Css.Demo exposing (..)
 
-import Element exposing (Element, el, text, row, alignRight, fill, width, rgb255, spacing, centerY, padding)
+import Element exposing (Element, alignRight, centerY, el, fill, padding, rgb255, row, spacing, text, width)
 import Element.Background as Background
 import Element.Border as Border
 import Element.Font as Font
 
 
-main = 
+main =
     Element.layout []
         myRowOfStuff
+
 
 myRowOfStuff : Element msg
 myRowOfStuff =
