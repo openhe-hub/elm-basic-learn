@@ -1,0 +1,12 @@
+{
+  "devDependencies": {
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.2"
+  },
+  "lint-staged": {
+    "*.elm": [
+      "elm-format --validate",
+      "elm-analyse"
+    ]
+  }
+}
