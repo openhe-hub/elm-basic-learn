@@ -5,8 +5,7 @@
   },
   "lint-staged": {
     "*.elm": [
-      "elm-format --validate src/",
-      "elm-analyse"
+      "elm-format --validate src/"
     ]
   }
 }
